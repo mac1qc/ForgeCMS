@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Controller;
+declare(strict_types=1);
 
-use App\Entity\Post;
-use App\Form\PostType;
-use App\Repository\PostRepository;
+namespace ForgeCMS\Post\Controller;
+
+use ForgeCMS\Post\Entity\Post;
+use ForgeCMS\Post\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/post')]
 final class PostController extends AbstractController
 {
-    #[Route('/api/posts', name: 'api_post_index', methods: ['GET'])]
+    /*#[Route('/api/posts', name: 'api_post_index', methods: ['GET'])]
     public function index(PostRepository $postRepository): Response
     {
         $posts = $postRepository->findAll();
@@ -62,5 +63,5 @@ final class PostController extends AbstractController
         $entityManager->flush();
 
         return new Response(null, Response::HTTP_NO_CONTENT);
-    }
+    }*/
 }

@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Entity;
+declare(strict_types=1);
 
-use App\Repository\PostRepository;
+namespace ForgeCMS\Post\Entity;
+
+use ForgeCMS\Post\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
 {
-    #[ORM\Id]
+    /*#[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
@@ -46,5 +48,5 @@ class Post
         $this->content = $content;
 
         return $this;
-    }
+    }*/
 }
