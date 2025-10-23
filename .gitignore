@@ -50,3 +50,18 @@
 
 # Embedded web-server pid file
 /.web-server-pid
+api/.DS_Store
+api/.env
+api/.env.dev
+api/symfony.lock
+api/composer.lock
+front/package-lock.json
+
+# SQLite database
+/api/var/data.db
+
+# Mac OS X
+.DS_Store
+
+# Build directory
+/front/build/
