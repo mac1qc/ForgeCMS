@@ -12,7 +12,7 @@ class TestController extends AbstractController
     public function index(): JsonResponse
     {
         return $this->json([
-            'message' => 'Welcome to your new API!',
+            'message' => 'Welcome to ForgeCMS API!',
             'path' => 'src/Controller/TestController.php',
         ]);
     }
