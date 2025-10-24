@@ -50,7 +50,6 @@
 
 # Embedded web-server pid file
 /.web-server-pid
-api/.DS_Store
 api/.env
 api/.env.dev
 api/symfony.lock
@@ -65,3 +64,29 @@ front/package-lock.json
 
 # Build directory
 /front/build/
+
+# API
+api/.env.local
+api/.env.local.php
+api/.env.*.local
+api/config/secrets/prod/prod.decrypt.private.php
+api/public/bundles/
+api/var/
+api/vendor/
+api/node_modules/
+api/public/build/
+
+# FRONT
+front/node_modules
+front/.pnp
+front/.pnp.js
+front/coverage
+front/.env.local
+front/.env.development.local
+front/.env.test.local
+front/.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
