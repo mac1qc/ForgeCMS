@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ForgeCMS\Users\Controller;
 
 use ForgeCMS\Users\Services\UserService;
