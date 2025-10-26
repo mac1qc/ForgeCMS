@@ -1,0 +1,51 @@
+<?php
+
+declare(strict_types=1);
+
+namespace ForgeCMS\Users\Services;
+
+use ForgeCMS\Users\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
+use Lcobucci\JWT\Configuration;
+use Lcobucci\JWT\Signer\Hmac\Sha256;
+use Lcobucci\JWT\Signer\Key\InMemory;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+
+class UserService
+{
+    public function __construct(
+        private EntityManagerInterface $entityManager,
+        private UserPasswordHasherInterface $passwordHasher,
+        private ParameterBagInterface $params
+    ) {
+    }
+
+    public function login(string $email, string $password): ?string
+    {
+        $userRepository = $this->entityManager->getRepository(User::class);
+        $user = $userRepository->findOneBy(['email' => $email]);
+
+        if (!$user || !$this->passwordHasher->isPasswordValid($user, $password)) {
+            return null;
+        }
+
+        $config = Configuration::forSymmetricSigner(
+            new Sha256(),
+            InMemory::plainText($_ENV['JWT_SECRET_KEY'])
+        );
+
+        $now = new \DateTimeImmutable();
+        $token = $config->builder()
+            ->issuedBy($_ENV['DEFAULT_URI'])
+            ->permittedFor($_ENV['DEFAULT_URI'])
+            ->identifiedBy('4f1g23a12aa')
+            ->issuedAt($now)
+            ->canOnlyBeUsedAfter($now)
+            ->expiresAt($now->modify('+1 hour'))
+            ->withClaim('uid', $user->getId())
+            ->getToken($config->signer(), $config->signingKey());
+
+        return $token->toString();
+    }
+}

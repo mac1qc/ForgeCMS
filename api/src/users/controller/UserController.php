@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+
+namespace ForgeCMS\Users\Controller;
+
+use ForgeCMS\Users\Services\UserService;
+use MartinAC\StatusCode;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+
+class UserController extends AbstractController
+{
+    public function __construct(private UserService $userService)
+    {
+    }
+
+    #[Route('/api/users/login', name: 'api_users_login', methods: ['POST'])]
+    public function login(Request $request): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+        $email = $data['email'] ?? null;
+        $password = $data['password'] ?? null;
+
+        $token = $this->userService->login($email, $password);
+
+        if ($token === null) {
+            return new JsonResponse(['status' => 'error', 'message' => 'Invalid credentials'], StatusCode::UNAUTHORIZED->value);
+        }
+
+        return new JsonResponse(['status' => 'ok', 'token' => $token]);
+    }
+}
