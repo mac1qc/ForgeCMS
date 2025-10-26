@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ForgeCMS\Users\Controller;
 
 use ForgeCMS\Users\Services\UserService;
+use MartinAC\StatusCode;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +27,7 @@ class UserController extends AbstractController
         $token = $this->userService->login($email, $password);
 
         if ($token === null) {
-            return new JsonResponse(['status' => 'error', 'message' => 'Invalid credentials'], 401);
+            return new JsonResponse(['status' => 'error', 'message' => 'Invalid credentials'], StatusCode::UNAUTHORIZED->value);
         }
 
         return new JsonResponse(['status' => 'ok', 'token' => $token]);
