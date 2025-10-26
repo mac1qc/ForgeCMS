@@ -8,14 +8,15 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use ForgeCMS\Users\Entity\User;
+use Symfony\Contracts\Service\Attribute\Required;
 
 final class Version202510260003 extends AbstractMigration
 {
     private UserPasswordHasherInterface $passwordHasher;
 
-    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    #[Required]
+    public function setPasswordHasher(UserPasswordHasherInterface $passwordHasher): void
     {
-        parent::__construct();
         $this->passwordHasher = $passwordHasher;
     }
 

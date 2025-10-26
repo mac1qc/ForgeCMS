@@ -32,13 +32,13 @@ class UserService
 
         $config = Configuration::forSymmetricSigner(
             new Sha256(),
-            InMemory::plainText($this->params->get('env(JWT_SECRET_KEY)'))
+            InMemory::plainText($_ENV['JWT_SECRET_KEY'])
         );
 
         $now = new \DateTimeImmutable();
         $token = $config->builder()
-            ->issuedBy($this->params->get('env(DEFAULT_URI)'))
-            ->permittedFor($this->params->get('env(DEFAULT_URI)'))
+            ->issuedBy($_ENV['DEFAULT_URI'])
+            ->permittedFor($_ENV['DEFAULT_URI'])
             ->identifiedBy('4f1g23a12aa')
             ->issuedAt($now)
             ->canOnlyBeUsedAfter($now)
