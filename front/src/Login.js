@@ -6,9 +6,16 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch(`/api/users/login?email=${email}&password=${password}`);
+        const response = await fetch('/api/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
         const data = await response.json();
         if (data.status === 'ok') {
+            localStorage.setItem('token', data.token);
             alert('Login successful');
         } else {
             alert(data.message);

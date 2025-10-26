@@ -1,8 +1,8 @@
 <?php
 
-namespace ForgeCMS\Users\Repository;
+namespace ForgeCMS\users\repository;
 
-use ForgeCMS\Users\Entity\User;
+use ForgeCMS\users\entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
