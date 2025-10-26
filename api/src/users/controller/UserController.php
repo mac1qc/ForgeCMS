@@ -1,8 +1,8 @@
 <?php
 
-namespace ForgeCMS\users\controller;
+namespace ForgeCMS\Users\Controller;
 
-use ForgeCMS\users\entity\User;
+use ForgeCMS\Users\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer\Hmac\Sha256;

@@ -1,5 +1,5 @@
-#controllers:
-    #resource:
-        #path: ../src/Controller/
-        #namespace: ForgeCMS\Controller
-    #type: attribute
+controllers:
+    resource:
+        path: ../src/Users/Controller/
+        namespace: ForgeCMS\Users\Controller
+    type: attribute

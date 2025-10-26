@@ -1,9 +1,9 @@
 <?php
 
-namespace ForgeCMS\users\entity;
+namespace ForgeCMS\Users\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ForgeCMS\users\repository\UserRepository;
+use ForgeCMS\Users\Repository\UserRepository;
 
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;

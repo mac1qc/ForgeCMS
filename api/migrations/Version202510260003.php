@@ -7,7 +7,7 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use ForgeCMS\users\entity\User;
+use ForgeCMS\Users\Entity\User;
 
 final class Version202510260003 extends AbstractMigration
 {
